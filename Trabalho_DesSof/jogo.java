@@ -10,25 +10,27 @@ public class jogo {
  
         Random gerador = new Random();
         int vida = 9;
-         
         System.out.println("-- Jogo de adivinhação --  \n Chute um número: ");
+        int n = gerador.nextInt(100);
         Scanner chute = new Scanner(System.in);
 
-        int n = gerador.nextInt(100);
-        int t1 = chute.nextInt();
-
-            // for(int i = 0; i <= 10; i++)
-
-                while (vida > 0) {
-                    if (t1 > n) {
-                        System.out.println("Errou.. o número sorteado é menor que este");
-                        vida--;
-                    } else  if (t1 < n) {
-                            System.out.println("Errou.. o número sorteado é maior que este");
-                            vida--;
-                            } else {
-                            System.out.println("Parabéns, você acertou!!");
-                        }
-                }
+        do {
+            int tent1 = chute.nextInt();
+            if (tent1 == n && tent1 > 0) {
+                System.out.println("Parabéns, você acertou!");
+                System.exit(0);
+            } else if (tent1 > n) {
+                System.out.println("Tente um número menor!");
+                vida--;
+            } else if (tent1 < n) {
+                System.out.println("Tente um número maior!");
+                vida--;
+            }
+            if (vida == 0) {
+                System.out.println("Você perdeu, tente novamente!");                
+            }
+        } while (vida > -1);
+        chute.close();
     }
 }
+
